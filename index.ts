@@ -13,6 +13,8 @@ export class MyMorningRoutine implements MorningRoutine {
       return "Do exercise";
     } else if (currentHour === 7) {
       return "Read and study";
+    } else if (currentHour === 8) {
+      return "Have breakfast";
     }
 
     return "No activity";
