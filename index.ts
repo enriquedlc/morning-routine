@@ -6,13 +6,34 @@ interface MorningRoutine {
   whatShouldIDoNow(): string;
 }
 
+interface Interval {
+  start: number;
+  end: number;
+  activity: string;
+
+  isInInterval(hour: number): boolean;
+}
+
+class RoutineInterval implements Interval {
+  constructor(
+    public start: number,
+    public end: number,
+    public activity: string
+  ) {}
+
+  isInInterval(hour: number): boolean {
+    return hour >= this.start && hour <= this.end;
+  }
+}
+
 export class MyMorningRoutine implements MorningRoutine {
   constructor() {}
 
-  private routine: [number, string][] = [
-    [6.5, "Do exercise"],
-    [7, "Read and study"],
-    [8, "Have breakfast"],
+  private routine: Interval[] = [
+    new RoutineInterval(6, 6.99, "Do exercise"),
+    new RoutineInterval(7, 7.49, "Read"),
+    new RoutineInterval(7.5, 7.99, "Read and study"),
+    new RoutineInterval(8, 8.99, "Have breakfast"),
   ];
 
   public whatShouldIDoNow(): string {
@@ -20,13 +41,10 @@ export class MyMorningRoutine implements MorningRoutine {
     const currentHour = now.getHours();
     const minutes = now.getMinutes();
 
-    console.log({ currentHour });
-    console.log({ minutes });
+    const found = this.routine.find((interval) =>
+      interval.isInInterval(currentHour + minutes / 60)
+    );
 
-    const found = this.routine.find(([hour]) => hour === currentHour);
-
-    console.log({ found });
-
-    return found?.[1] ?? "No activity";
+    return found?.activity ?? "No activity";
   }
 }
