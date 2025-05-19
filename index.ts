@@ -9,10 +9,10 @@ export class MyMorningRoutine implements MorningRoutine {
     const now = new Date();
     const currentHour = now.getHours();
 
-    console.log("Current hour:", currentHour);
-
     if (currentHour === 6) {
       return "Do exercise";
+    } else if (currentHour === 7) {
+      return "Read and study";
     }
 
     return "No activity";
