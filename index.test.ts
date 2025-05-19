@@ -2,40 +2,28 @@ import { describe, it, vi, expect } from "vitest";
 
 import { MyMorningRoutine } from "./index.ts";
 
+function activityAtTime(time: string, expected: string) {
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date(`2023-10-01T${time}`));
+
+  const routine = new MyMorningRoutine();
+  const activity = routine.whatShouldIDoNow();
+
+  expect(activity).toBe(expected);
+
+  vi.useRealTimers();
+}
+
 describe("Morning routine", () => {
   it("should print 'Do exercise' between 06:00 and 06:59", () => {
-    const date = new Date("2023-10-01T06:00:00");
-
-    vi.useFakeTimers();
-    vi.setSystemTime(date);
-
-    const routine = new MyMorningRoutine();
-    const activity = routine.whatShouldIDoNow();
-
-    expect(activity).toBe("Do exercise");
-    vi.useRealTimers();
+    activityAtTime("06:00:00", "Do exercise");
   });
+
   it("should print 'Read and study' between 07:00 and 07:59", () => {
-    const date = new Date("2023-10-01T07:10:00");
-
-    vi.useFakeTimers();
-    vi.setSystemTime(date);
-
-    const routine = new MyMorningRoutine();
-    const activity = routine.whatShouldIDoNow();
-
-    expect(activity).toBe("Read and study");
-    vi.useRealTimers();
+    activityAtTime("07:10:00", "Read and study");
   });
-  it("should print 'Have breakfast' between 8:00 and 8:59", () => {
-    const date = new Date("2023-10-01T08:20:00");
 
-    vi.useFakeTimers();
-    vi.setSystemTime(date);
-
-    const routine = new MyMorningRoutine();
-    const activity = routine.whatShouldIDoNow();
-
-    expect(activity).toBe("Have breakfast");
+  it("should print 'Have breakfast' between 08:00 and 08:59", () => {
+    activityAtTime("08:45:00", "Have breakfast");
   });
 });

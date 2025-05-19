@@ -8,6 +8,7 @@ export class MyMorningRoutine implements MorningRoutine {
   public whatShouldIDoNow() {
     const now = new Date();
     const currentHour = now.getHours();
+    console.log(currentHour);
 
     if (currentHour === 6) {
       return "Do exercise";
