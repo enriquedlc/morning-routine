@@ -2,22 +2,24 @@ interface MorningRoutine {
   whatShouldIDoNow(): string;
 }
 
+interface MorningRoutine {
+  whatShouldIDoNow(): string;
+}
+
 export class MyMorningRoutine implements MorningRoutine {
   constructor() {}
 
-  public whatShouldIDoNow() {
+  private routine: [number, string][] = [
+    [6, "Do exercise"],
+    [7, "Read and study"],
+    [8, "Have breakfast"],
+  ];
+
+  public whatShouldIDoNow(): string {
     const now = new Date();
     const currentHour = now.getHours();
-    console.log(currentHour);
 
-    if (currentHour === 6) {
-      return "Do exercise";
-    } else if (currentHour === 7) {
-      return "Read and study";
-    } else if (currentHour === 8) {
-      return "Have breakfast";
-    }
-
-    return "No activity";
+    const found = this.routine.find(([hour]) => hour === currentHour);
+    return found?.[1] ?? "No activity";
   }
 }
