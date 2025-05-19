@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "index": "tsc ./index.ts && node ./index.js"
+    "index": "tsc ./index.ts && node ./index.js",
+    "test": "vitest"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

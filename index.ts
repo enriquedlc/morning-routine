@@ -1,22 +1,14 @@
 interface MorningRoutine {
-  whatShouldIDoNow(): void;
+  whatShouldIDoNow(): string;
 }
 
-export class MyMorningRouting implements MorningRoutine {
+export class MyMorningRoutine implements MorningRoutine {
+  constructor() {}
+
   public whatShouldIDoNow() {
     const now = new Date();
     const currentHour = now.getHours();
-    if (currentHour == 6) {
-      console.log("Do exercise");
-    } else if (currentHour == 7) {
-      console.log("Read and study");
-    } else if (currentHour == 8) {
-      console.log("Have breakfast");
-    } else {
-      console.log("No activity");
-    }
+
+    return "No activity";
   }
 }
-
-const myMorningRoutine = new MyMorningRouting();
-myMorningRoutine.whatShouldIDoNow();
