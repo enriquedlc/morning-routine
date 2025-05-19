@@ -27,4 +27,15 @@ describe("Morning routine", () => {
     expect(activity).toBe("Read and study");
     vi.useRealTimers();
   });
+  it("should print 'Have breakfast' between 8:00 and 8:59", () => {
+    const date = new Date("2023-10-01T08:20:00");
+
+    vi.useFakeTimers();
+    vi.setSystemTime(date);
+
+    const routine = new MyMorningRoutine();
+    const activity = routine.whatShouldIDoNow();
+
+    expect(activity).toBe("Have breakfast");
+  });
 });
