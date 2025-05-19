@@ -3,7 +3,7 @@ import { describe, it, vi, expect } from "vitest";
 import { MyMorningRoutine } from "./index.ts";
 
 describe("Morning routine", () => {
-  it("should print 'Do exercise' between 06:00 and 06:59", () => {
+  it("should print 'Do exercise' at 06:00", () => {
     const date = new Date("2023-10-01T06:00:00");
 
     vi.useFakeTimers();
