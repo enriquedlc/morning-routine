@@ -1,30 +1,6 @@
-interface MorningRoutine {
-  whatShouldIDoNow(): string;
-}
-
-interface MorningRoutine {
-  whatShouldIDoNow(): string;
-}
-
-interface Interval {
-  start: number;
-  end: number;
-  activity: string;
-
-  isInInterval(hour: number): boolean;
-}
-
-class RoutineInterval implements Interval {
-  constructor(
-    public start: number,
-    public end: number,
-    public activity: string
-  ) {}
-
-  isInInterval(hour: number): boolean {
-    return hour >= this.start && hour <= this.end;
-  }
-}
+import { Interval } from "./Interval";
+import { MorningRoutine } from "./MorningRoutine";
+import { RoutineInterval } from "./RoutineInterval";
 
 export class MyMorningRoutine implements MorningRoutine {
   constructor() {}

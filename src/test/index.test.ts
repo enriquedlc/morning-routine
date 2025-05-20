@@ -1,6 +1,6 @@
 import { describe, it, vi, expect } from "vitest";
 
-import { MyMorningRoutine } from "./index.ts";
+import { MyMorningRoutine } from "../MyMorningRoutine";
 
 function activityAtTime(time: string, expected: string) {
   vi.useFakeTimers();
