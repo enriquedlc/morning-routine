@@ -3,5 +3,5 @@ export interface Interval {
   end: number;
   activity: string;
 
-  isInInterval(hour: number): boolean;
+  contains(hour: number): boolean;
 }

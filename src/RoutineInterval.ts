@@ -7,7 +7,7 @@ export class RoutineInterval implements Interval {
     public activity: string
   ) {}
 
-  isInInterval(hour: number): boolean {
+  contains(hour: number): boolean {
     return hour >= this.start && hour <= this.end;
   }
 }
