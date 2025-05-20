@@ -19,11 +19,11 @@ export class MyMorningRoutine implements MorningRoutine {
     const now = new Date();
     const decimalTime = now.getHours() + now.getMinutes() / 60;
 
-    const found = this.routine
+    const routine = this.routine
       .filter((interval) => interval.contains(decimalTime))
       .sort((a, b) => a.duration() - b.duration())
       .at(0);
 
-    return found?.activity ?? "No activity";
+    return routine?.activity ?? "No activity";
   }
 }
