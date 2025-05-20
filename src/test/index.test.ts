@@ -27,6 +27,12 @@ describe("Morning routine", () => {
   it("should print 'Have breakfast' between 08:00 and 08:59", () => {
     activityAtTime("08:45:00", "Have breakfast");
   });
+  it("should print 'Do exercise' between 06:00 and 06:44", () => {
+    activityAtTime("06:40:00", "Do exercise");
+  });
+  it("should print 'Take a shower' between 06:45 and 06:59", () => {
+    activityAtTime("06:50:00", "Take a shower");
+  });
   it("should pring 'No activity' outside time interval", () => {
     activityAtTime("12:00:00", "No activity");
   });
