@@ -46,3 +46,28 @@ describe("Morning routine", () => {
     activityAtTime("12:00:00", "No activity");
   });
 });
+
+describe("Morning routine each", () => {
+  it.each([
+    ["06:10:00", "Do exercise"],
+    ["07:00:00", "Read"],
+    ["07:32:00", "Study"],
+    ["08:45:00", "Have breakfast"],
+    ["06:40:00", "Do exercise"],
+    ["06:50:00", "Take a shower"],
+    ["07:00:00", "Read"],
+    ["07:32:00", "Study"],
+    ["08:20:00", "Have breakfast"],
+    ["12:00:00", "No activity"],
+  ])("should print '%s' at %s", (time, expected) => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(`2023-10-01T${time}`));
+
+    const routine = new MyMorningRoutine();
+    const activity = routine.whatShouldIDoNow();
+
+    expect(activity).toBe(expected);
+
+    vi.useRealTimers();
+  });
+});
