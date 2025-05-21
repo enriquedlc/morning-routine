@@ -1,4 +1,5 @@
 import { Interval } from "./Interval";
+import { parseTime } from "./utils";
 
 export class RoutineInterval implements Interval {
   private readonly start: number;
@@ -25,5 +26,9 @@ export class RoutineInterval implements Interval {
 
   overlapsWith(other: RoutineInterval): boolean {
     return this.start < other.end && other.start < this.end;
+  }
+
+  static from(start: string, end: string, activity: string): RoutineInterval {
+    return new RoutineInterval(parseTime(start), parseTime(end), activity);
   }
 }
